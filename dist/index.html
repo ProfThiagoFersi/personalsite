@@ -1,14 +1,103 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/personalsite/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>renata_okoti_site</title>
-    <script type="module" crossorigin src="/personalsite/assets/index-DqdMQvi9.js"></script>
-    <link rel="stylesheet" crossorigin href="/personalsite/assets/index-B6OmpMvd.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Pro - Gestão de Treino</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loginArea" class="container-login">
+        <div class="card">
+            <h1><i class="fas fa-user-shield"></i> Login</h1>
+            <p>Acesso restrito ao Personal Trainer</p>
+            <input type="password" id="senhaInput" placeholder="Introduza a senha">
+            <button onclick="verificarSenha()">Entrar</button>
+        </div>
+    </div>
+
+    <div id="appConteudo" style="display: none;">
+        <div class="container">
+            <header>
+                <button onclick="novoAluno()" class="btn-novo"><i class="fas fa-user-plus"></i> Novo Aluno</button>
+                <h1><i class="fas fa-dumbbell"></i> Personal Pro</h1>
+            </header>
+
+            <section class="card">
+                <h3><i class="fas fa-id-card"></i> Avaliação Física</h3>
+                <input type="text" id="nome" placeholder="Nome Completo">
+                <div class="row">
+                    <input type="number" id="idade" placeholder="Idade">
+                    <select id="genero">
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <input type="number" id="peso" placeholder="Peso (kg)">
+                    <input type="number" id="altura" placeholder="Altura (cm)">
+                </div>
+                <label>Nível de Atividade:</label>
+                <select id="atividade">
+                    <option value="1.2">Sedentário</option>
+                    <option value="1.375">Leve (1-3 dias/sem)</option>
+                    <option value="1.55">Moderado (3-5 dias/sem)</option>
+                    <option value="1.725">Intenso (6-7 dias/sem)</option>
+                </select>
+                <div class="row">
+                    <input type="number" id="cintura" placeholder="Cintura (cm)">
+                    <input type="number" id="pescoco" placeholder="Pescoço (cm)">
+                </div>
+                <button class="btn-primary" onclick="calcularTudo()"><i class="fas fa-calculator"></i> Calcular e Guardar</button>
+            </section>
+
+            <section class="card results-grid">
+                <div class="res-item"><strong>IMC:</strong> <span id="resIMC">-</span></div>
+                <div class="res-item"><strong>% Gordura:</strong> <span id="resGordura">-</span></div>
+                <div class="res-item"><strong>Calorias:</strong> <span id="resCalorias">-</span> kcal</div>
+            </section>
+
+            <section class="card">
+                <h3><i class="fas fa-chart-area"></i> Progresso de Peso</h3>
+                <canvas id="graficoPeso"></canvas>
+            </section>
+
+            <section class="card timer-section">
+                <h3><i class="fas fa-stopwatch"></i> Descanso</h3>
+                <div id="timerDisplay">00:00</div>
+                <div class="row">
+                    <button class="btn-timer" onclick="iniciarTimer(60)">60s</button>
+                    <button class="btn-timer" onclick="iniciarTimer(90)">90s</button>
+                    <button class="btn-danger" onclick="pararTimer()">Parar</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3><i class="fas fa-clipboard-list"></i> Plano de Treino</h3>
+                <div class="row">
+                    <button onclick="configurarTreino('A')">Treino A</button>
+                    <button onclick="configurarTreino('B')">Treino B</button>
+                    <button onclick="configurarTreino('C')">Treino C</button>
+                </div>
+                
+                <div id="areaEditor" style="display:none; margin-top:15px;">
+                    <h4 id="tituloTreino"></h4>
+                    <textarea id="textoTreino" placeholder="Liste os exercícios aqui..."></textarea>
+                    <button class="btn-save" onclick="salvarTreino()"><i class="fas fa-save"></i> Salvar Exercícios</button>
+                </div>
+
+                <div id="exibicaoTreino" class="display-treino">
+                    <p>Selecione um treino acima para visualizar ou editar.</p>
+                </div>
+                <button class="btn-pdf" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Gerar PDF Profissional</button>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>

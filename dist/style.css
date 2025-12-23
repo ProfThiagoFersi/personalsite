@@ -1,0 +1,81 @@
+:root {
+    --primary: #adff2f;
+    --bg: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --input-bg: #2a2a2a;
+    --text: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container, .container-login {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+h1, h3 { color: var(--primary); text-align: center; margin-top: 0; }
+
+.row { display: flex; gap: 10px; margin-bottom: 10px; }
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--input-bg);
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #444;
+    color: white;
+}
+
+.btn-primary { background: var(--primary); color: black; }
+.btn-save { background: #28a745; color: white; margin-top: 10px; }
+.btn-pdf { background: #007bff; color: white; margin-top: 20px; }
+.btn-danger { background: #dc3545; color: white; }
+.btn-timer { background: #ffc107; color: black; }
+.btn-novo { background: #6c757d; font-size: 0.8rem; width: auto; margin-bottom: 10px; }
+
+button:hover { filter: brightness(1.2); }
+
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; }
+.res-item { background: #252525; padding: 10px; border-radius: 8px; border-bottom: 2px solid var(--primary); }
+
+#timerDisplay { font-size: 3rem; text-align: center; color: var(--primary); font-family: monospace; margin: 10px 0; }
+
+.display-treino {
+    background: white;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    min-height: 100px;
+    white-space: pre-line;
+}
